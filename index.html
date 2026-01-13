@@ -1,70 +1,605 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Virendra | Portfolio</title>
+    <title>Virendra | Creative Services</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
-        body { font-family: 'Inter', sans-serif; }
-        .gradient-bg { background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); }
+        body { 
+            font-family: 'Inter', sans-serif;
+            animation: fadeInPage 0.8s ease-out;
+        }
+        
+        /* Page load animation */
+        @keyframes fadeInPage {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        /* Hero section animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.5); }
+            50% { box-shadow: 0 0 30px rgba(59, 130, 246, 0.8); }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        @keyframes bounceIn {
+            0% { 
+                opacity: 0;
+                transform: scale(0.3);
+            }
+            50% { 
+                opacity: 0.9;
+                transform: scale(1.05);
+            }
+            80% { 
+                opacity: 1;
+                transform: scale(0.95);
+            }
+            100% { 
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+            20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
+        
+        .hero-bg {
+            background: linear-gradient(120deg, #1e3a8a, #2563eb, #3b82f6);
+            animation: gradientShift 15s ease infinite;
+            background-size: 400% 400%;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .paper {
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            animation: paperAppear 0.6s ease-out;
+        }
+        
+        @keyframes paperAppear {
+            from {
+                opacity: 0;
+                transform: translateY(20px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 9999;
+            max-width: 400px;
+            animation: slideInRight 0.3s ease-out;
+        }
+        
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(100%);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .fade-out {
+            animation: fadeOutUp 0.3s ease-out forwards;
+        }
+        
+        @keyframes fadeOutUp {
+            to {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+        }
+        
+        /* Service card hover animation */
+        .service-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        /* Form input focus animation */
+        .form-input {
+            transition: all 0.3s ease;
+        }
+        
+        .form-input:focus {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(59, 130, 246, 0.15);
+        }
+        
+        /* Submit button click animation */
+        .submit-btn:active {
+            animation: clickEffect 0.2s ease;
+        }
+        
+        @keyframes clickEffect {
+            0% { transform: scale(1); }
+            50% { transform: scale(0.97); }
+            100% { transform: scale(1); }
+        }
+        
+        /* WhatsApp button animation */
+        .whatsapp-btn {
+            animation: pulse 2s infinite, float 3s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+        
+        /* Icon animation in service cards */
+        .service-icon {
+            transition: all 0.5s ease;
+        }
+        
+        .service-card:hover .service-icon {
+            transform: rotateY(180deg) scale(1.2);
+        }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800">
+<body class="bg-gray-100 text-gray-800">
 
-    <nav class="p-6 bg-white shadow-sm flex justify-between items-center px-10">
-        <h1 class="text-2xl font-bold text-blue-700">VIRENDRA</h1>
-        <div class="space-x-6">
-            <a href="#home" class="hover:text-blue-600">Home</a>
-            <a href="#about" class="hover:text-blue-600">About</a>
-            <a href="#contact" class="hover:text-blue-600 font-semibold border-2 border-blue-600 px-4 py-1 rounded-full">Contact</a>
-        </div>
-    </nav>
+    <!-- Notification Area -->
+    <div id="notificationArea" class="notification"></div>
 
-    <section id="home" class="gradient-bg h-screen flex flex-col justify-center items-center text-white text-center px-4">
-        <h2 class="text-5xl md:text-7xl font-extrabold mb-4">Namaste, I'm Virendra</h2>
-        <p class="text-xl md:text-2xl mb-8 opacity-90">Developer | Creator | Problem Solver</p>
-        <a href="#about" class="bg-white text-blue-700 px-8 py-3 rounded-lg font-bold hover:bg-gray-100 transition">Mera Kaam Dekhein</a>
-    </section>
-
-    <section id="about" class="py-20 px-10 max-w-4xl mx-auto text-center">
-        <h3 class="text-3xl font-bold mb-6">Mere Baare Mein</h3>
-        <p class="text-lg text-gray-600 leading-relaxed">
-            Main ek passionate web developer hoon jo sundar aur fast websites banana pasand karta hai. 
-            Mera goal hai ki main technology ke zariye mushkil problems ko asaan banau.
-        </p>
-        
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
-            <div class="p-6 bg-white rounded-xl shadow-md">
-                <i class="fas fa-code text-3xl text-blue-500 mb-4"></i>
-                <h4 class="font-bold">Development</h4>
-                <p class="text-sm text-gray-500">Modern and clean code.</p>
+    <!-- HERO SECTION WITH ANIMATIONS -->
+    <section class="hero-bg min-h-screen flex items-center justify-center text-white text-center px-6 overflow-hidden">
+        <div class="max-w-4xl">
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 animate-fade-in-down" style="animation: fadeInDown 1s ease-out 0.2s both;">Virendra maskole</h1>
+            <div class="overflow-hidden">
+                <p class="text-xl md:text-2xl mb-10 animate-fade-in-up" style="animation: fadeInUp 1s ease-out 0.5s both;">
+                    <span class="inline-block animate-float" style="animation: float 3s ease-in-out infinite 1s;">Reels</span> • 
+                    <span class="inline-block animate-float" style="animation: float 3s ease-in-out infinite 1.2s;">Posters</span> • 
+                    <span class="inline-block animate-float" style="animation: float 3s ease-in-out infinite 1.4s;">Video Editing</span> • 
+                    <span class="inline-block animate-float" style="animation: float 3s ease-in-out infinite 1.6s;">Data Analysis</span>
+                </p>
             </div>
-            <div class="p-6 bg-white rounded-xl shadow-md">
-                <i class="fas fa-paint-brush text-3xl text-blue-500 mb-4"></i>
-                <h4 class="font-bold">Design</h4>
-                <p class="text-sm text-gray-500">Minimalist UI/UX.</p>
+            <div class="animate-fade-in-up" style="animation: fadeInUp 1s ease-out 0.8s both;">
+                <a href="#form" class="inline-block bg-white text-blue-700 px-10 py-4 rounded-xl font-bold text-lg hover:bg-gray-100 transition-all duration-300 hover:scale-105 hover:shadow-2xl animate-pulse-glow" style="animation: pulseGlow 2s infinite;">
+                    <i class="fas fa-calendar-check mr-2"></i> Book a Service
+                </a>
             </div>
-            <div class="p-6 bg-white rounded-xl shadow-md">
-                <i class="fas fa-rocket text-3xl text-blue-500 mb-4"></i>
-                <h4 class="font-bold">SEO</h4>
-                <p class="text-sm text-gray-500">Optimized for speed.</p>
+            <div class="mt-16 animate-fade-in-up" style="animation: fadeInUp 1s ease-out 1.2s both;">
+                <a href="#services" class="text-white/80 hover:text-white transition-colors duration-300">
+                    <i class="fas fa-chevron-down text-2xl animate-bounce" style="animation: bounce 2s infinite;"></i>
+                </a>
             </div>
         </div>
     </section>
 
-    <section id="contact" class="bg-gray-100 py-20 px-10 text-center">
-        <h3 class="text-3xl font-bold mb-8">Mujhse Sampark Karein</h3>
-        <p class="mb-8">Kya aapke paas koi project hai? Chaliye baat karte hain!</p>
-        <a href="mailto:virendra@email.com" class="bg-blue-600 text-white px-10 py-4 rounded-full text-lg font-semibold hover:bg-blue-700">
-            Email Me: virendra@email.com
-        </a>
+    <!-- SERVICES SECTION -->
+    <section id="services" class="py-20 px-6 bg-white text-center">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-4xl font-bold mb-4 animate-fade-in-down" style="animation: fadeInDown 0.8s ease-out both;">My Services</h2>
+            <p class="text-gray-600 mb-12 max-w-2xl mx-auto animate-fade-in-up" style="animation: fadeInUp 0.8s ease-out 0.3s both;">
+                Professional creative services tailored to your needs
+            </p>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+                <!-- Reel Editing Card -->
+                <div class="service-card p-6 rounded-2xl border bg-white shadow-lg">
+                    <div class="service-icon-wrapper mb-5">
+                        <i class="fas fa-film text-4xl text-blue-600 mb-3 service-icon"></i>
+                    </div>
+                    <h3 class="font-bold text-xl mb-2">Reel Editing</h3>
+                    <p class="text-gray-600 mb-4">Engaging Instagram & YouTube Shorts editing</p>
+                    <div class="text-blue-500 text-sm font-medium">
+                        <i class="fas fa-bolt mr-1"></i> Fast turnaround
+                    </div>
+                </div>
+                
+                <!-- Poster Design Card -->
+                <div class="service-card p-6 rounded-2xl border bg-white shadow-lg">
+                    <div class="service-icon-wrapper mb-5">
+                        <i class="fas fa-paint-brush text-4xl text-blue-600 mb-3 service-icon"></i>
+                    </div>
+                    <h3 class="font-bold text-xl mb-2">Poster Design</h3>
+                    <p class="text-gray-600 mb-4">Creative social media & promotion posters</p>
+                    <div class="text-blue-500 text-sm font-medium">
+                        <i class="fas fa-palette mr-1"></i> Custom designs
+                    </div>
+                </div>
+                
+                <!-- Video Editing Card -->
+                <div class="service-card p-6 rounded-2xl border bg-white shadow-lg">
+                    <div class="service-icon-wrapper mb-5">
+                        <i class="fas fa-video text-4xl text-blue-600 mb-3 service-icon"></i>
+                    </div>
+                    <h3 class="font-bold text-xl mb-2">Video Editing</h3>
+                    <p class="text-gray-600 mb-4">Professional YouTube & promotional videos</p>
+                    <div class="text-blue-500 text-sm font-medium">
+                        <i class="fas fa-magic mr-1"></i> Premium effects
+                    </div>
+                </div>
+                
+                <!-- Data Analysis Card -->
+                <div class="service-card p-6 rounded-2xl border bg-white shadow-lg">
+                    <div class="service-icon-wrapper mb-5">
+                        <i class="fas fa-chart-line text-4xl text-blue-600 mb-3 service-icon"></i>
+                    </div>
+                    <h3 class="font-bold text-xl mb-2">Data Analysis</h3>
+                    <p class="text-gray-600 mb-4">Insightful reports & analytics from data</p>
+                    <div class="text-blue-500 text-sm font-medium">
+                        <i class="fas fa-chart-bar mr-1"></i> Clear insights
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <footer class="py-10 text-center text-gray-500 border-t">
-        <p>© 2026 Virendra. Made with ❤️</p>
+    <!-- PAPER STYLE FORM -->
+    <section id="form" class="py-24 px-6">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-4xl font-bold text-center mb-4 animate-fade-in-down" style="animation: fadeInDown 0.8s ease-out both;">Service Request Form</h2>
+            <p class="text-gray-600 text-center mb-12 max-w-2xl mx-auto animate-fade-in-up" style="animation: fadeInUp 0.8s ease-out 0.3s both;">
+                Fill out the form below and we'll get back to you within 24 hours
+            </p>
+            
+            <form id="serviceForm" class="paper max-w-3xl mx-auto p-8 md:p-10 space-y-8 rounded-2xl">
+                <!-- Name Field -->
+                <div class="form-group">
+                    <label class="font-semibold block mb-3 text-lg">
+                        <i class="fas fa-user text-blue-500 mr-2"></i> Full Name *
+                    </label>
+                    <input type="text" id="name" required 
+                           class="form-input w-full p-4 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-4 focus:ring-blue-100 outline-none transition-all duration-300">
+                </div>
+                
+                <!-- Phone Field -->
+                <div class="form-group">
+                    <label class="font-semibold block mb-3 text-lg">
+                        <i class="fas fa-phone text-blue-500 mr-2"></i> Mobile Number *
+                    </label>
+                    <input type="tel" id="phone" required 
+                           class="form-input w-full p-4 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-4 focus:ring-blue-100 outline-none transition-all duration-300" 
+                           placeholder="+91 9876543210">
+                </div>
+                
+                <!-- Service Selection -->
+                <div class="form-group">
+                    <label class="font-semibold block mb-3 text-lg">
+                        <i class="fas fa-cogs text-blue-500 mr-2"></i> Select Service *
+                    </label>
+                    <div class="relative">
+                        <select id="service" 
+                                class="form-input w-full p-4 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-4 focus:ring-blue-100 outline-none transition-all duration-300 appearance-none">
+                            <option value="">Choose a service</option>
+                            <option>Reel Editing</option>
+                            <option>Poster Design</option>
+                            <option>Video Editing</option>
+                            <option>Data Analysis</option>
+                        </select>
+                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4">
+                            <i class="fas fa-chevron-down text-gray-400"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project Details -->
+                <div class="form-group">
+                    <label class="font-semibold block mb-3 text-lg">
+                        <i class="fas fa-file-alt text-blue-500 mr-2"></i> Project Details *
+                    </label>
+                    <textarea id="details" rows="6" required 
+                              class="form-input w-full p-4 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-4 focus:ring-blue-100 outline-none transition-all duration-300 resize-none"
+                              placeholder="Please explain your work requirements, timeline, budget, and any specific requests..."></textarea>
+                </div>
+                
+                <!-- Submit Button -->
+                <div class="pt-4">
+                    <button type="submit" id="submitBtn" 
+                            class="submit-btn w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white py-5 rounded-xl font-bold text-lg hover:from-blue-700 hover:to-blue-800 focus:ring-4 focus:ring-blue-300 transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] shadow-lg hover:shadow-xl">
+                        <i class="fas fa-paper-plane mr-3"></i> Submit Form & Send Email
+                    </button>
+                    
+                    <p class="text-sm text-gray-500 text-center mt-6">
+                        <i class="fas fa-info-circle mr-2 text-blue-500"></i>
+                        After submission, WhatsApp will open automatically and an email copy will be sent to virendramaskole29@gmail.com
+                    </p>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- WHATSAPP BUTTON WITH ANIMATION -->
+    <a href="https://wa.me/919111177793" target="_blank" 
+       class="whatsapp-btn fixed bottom-8 right-8 bg-green-500 text-white w-16 h-16 rounded-full flex items-center justify-center shadow-2xl hover:bg-green-600 hover:shadow-3xl transition-all duration-300 z-50">
+        <i class="fab fa-whatsapp text-3xl"></i>
+    </a>
+
+    <!-- FOOTER -->
+    <footer class="py-10 text-center text-gray-500 border-t bg-white">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0 animate-fade-in-left" style="animation: fadeInUp 0.8s ease-out both;">
+                    <p class="text-lg font-semibold text-gray-800">Virendra • Creative Services</p>
+                    <p class="text-sm mt-1">Professional digital solutions since 2023</p>
+                </div>
+                
+                <div class="flex space-x-6 animate-fade-in-right" style="animation: fadeInUp 0.8s ease-out 0.3s both;">
+                    <a href="https://wa.me/919111177793" target="_blank" class="text-gray-500 hover:text-green-500 transition-colors duration-300">
+                        <i class="fab fa-whatsapp text-xl"></i>
+                    </a>
+                    <a href="mailto:virendramaskole29@gmail.com" class="text-gray-500 hover:text-blue-500 transition-colors duration-300">
+                        <i class="fas fa-envelope text-xl"></i>
+                    </a>
+                    <span class="text-gray-500">© 2026 All rights reserved</span>
+                </div>
+            </div>
+        </div>
     </footer>
 
+    <script>
+        // Animation on scroll
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.service-card, .form-group');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animation = 'bounceIn 0.6s ease-out both';
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            elements.forEach(element => {
+                observer.observe(element);
+            });
+        }
+        
+        // Show notification function
+        function showNotification(message, type = 'success') {
+            const area = document.getElementById('notificationArea');
+            const notification = document.createElement('div');
+            
+            notification.className = `p-5 rounded-xl shadow-2xl mb-4 ${type === 'success' ? 'bg-gradient-to-r from-green-500 to-green-600 text-white' : 'bg-gradient-to-r from-red-500 to-red-600 text-white'}`;
+            notification.innerHTML = `
+                <div class="flex items-center">
+                    <i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-triangle'} mr-4 text-2xl"></i>
+                    <div class="flex-1">
+                        <div class="font-bold mb-1">${type === 'success' ? 'Success!' : 'Error!'}</div>
+                        <div class="text-sm opacity-90">${message}</div>
+                    </div>
+                    <button onclick="this.parentElement.parentElement.remove()" class="ml-4 text-white/70 hover:text-white">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            `;
+            
+            area.appendChild(notification);
+            
+            // Remove notification after 5 seconds
+            setTimeout(() => {
+                if (notification.parentElement) {
+                    notification.style.animation = 'fadeOutUp 0.3s ease-out forwards';
+                    setTimeout(() => notification.remove(), 300);
+                }
+            }, 5000);
+        }
+        
+        // Send email function
+        function sendEmail(name, phone, service, details) {
+            const email = 'virendramaskole29@gmail.com';
+            const subject = `🚀 New Service Request: ${name}`;
+            const body = `
+Hello Virendra,
+
+You have received a new service request from your website:
+
+Name: ${name}
+Phone: ${phone}
+Service: ${service}
+
+Project Details:
+${details}
+
+---
+This email was automatically generated from your service request form.
+            `.trim();
+            
+            // Create mailto link
+            const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            
+            // Open email client
+            window.open(mailtoLink, '_blank');
+            
+            return true;
+        }
+        
+        // Send WhatsApp function
+        function sendWhatsApp(name, phone, service, details) {
+            const msg = `New Service Request%0A%0AName: ${name}%0APhone: ${phone}%0AService: ${service}%0A%0ADetails: ${details}%0A%0AThis request was submitted via your website.`;
+            window.open(`https://wa.me/919755523428?text=${msg}`, '_blank');
+        }
+        
+        // Form submission handler
+        document.getElementById('serviceForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            const originalText = submitBtn.innerHTML;
+            
+            // Get form values
+            const name = document.getElementById('name').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const service = document.getElementById('service').value;
+            const details = document.getElementById('details').value.trim();
+            
+            // Validate form
+            if (!name || !phone || !service || !details) {
+                // Shake animation for empty fields
+                const emptyFields = [];
+                if (!name) {
+                    document.getElementById('name').classList.add('border-red-500');
+                    emptyFields.push('name');
+                }
+                if (!phone) {
+                    document.getElementById('phone').classList.add('border-red-500');
+                    emptyFields.push('phone');
+                }
+                if (!service) {
+                    document.getElementById('service').classList.add('border-red-500');
+                    emptyFields.push('service');
+                }
+                if (!details) {
+                    document.getElementById('details').classList.add('border-red-500');
+                    emptyFields.push('details');
+                }
+                
+                // Shake animation
+                emptyFields.forEach(fieldId => {
+                    const field = document.getElementById(fieldId);
+                    field.style.animation = 'shake 0.5s ease-in-out';
+                    setTimeout(() => field.style.animation = '', 500);
+                });
+                
+                showNotification('Please fill in all required fields.', 'error');
+                return;
+            }
+            
+            try {
+                // Disable button and show loading
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-3"></i> Sending Request...';
+                
+                // Add loading animation to button
+                submitBtn.style.animation = 'pulse 1s infinite';
+                
+                // Send email
+                const emailSent = sendEmail(name, phone, service, details);
+                
+                if (emailSent) {
+                    // Send WhatsApp message after a short delay
+                    setTimeout(() => {
+                        sendWhatsApp(name, phone, service, details);
+                    }, 500);
+                    
+                    // Show success message with animation
+                    showNotification('Form submitted successfully! Email sent and WhatsApp opened.', 'success');
+                    
+                    // Add celebration animation
+                    submitBtn.style.animation = 'pulseGlow 1s 3';
+                    
+                    // Reset form after a delay
+                    setTimeout(() => {
+                        document.getElementById('serviceForm').reset();
+                        // Remove red borders if any
+                        document.querySelectorAll('.border-red-500').forEach(el => {
+                            el.classList.remove('border-red-500');
+                        });
+                    }, 1500);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                showNotification('There was an error submitting the form. Please try again.', 'error');
+            } finally {
+                // Re-enable button after animation
+                setTimeout(() => {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.style.animation = '';
+                }, 3000);
+            }
+        });
+        
+        // Input validation styling
+        const inputs = document.querySelectorAll('input, select, textarea');
+        inputs.forEach(input => {
+            // Remove red border on input
+            input.addEventListener('input', function() {
+                this.classList.remove('border-red-500');
+                this.style.animation = '';
+            });
+            
+            // Add focus animation
+            input.addEventListener('focus', function() {
+                this.parentElement.classList.add('transform', 'transition-all', 'duration-300');
+            });
+        });
+        
+        // Initialize animations when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            animateOnScroll();
+            
+            // Add animation to service cards sequentially
+            setTimeout(() => {
+                document.querySelectorAll('.service-card').forEach((card, index) => {
+                    setTimeout(() => {
+                        card.style.animation = `paperAppear 0.5s ease-out ${index * 0.1}s both`;
+                    }, 100);
+                });
+            }, 500);
+        });
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
